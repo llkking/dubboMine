@@ -1,0 +1,16 @@
+package com.hosjoy.dubbo.provider.util.interFace;
+
+/**
+ *  Utils Service 基础服务接口
+ * @author Administrator
+ *
+ */
+public interface IUtilsService {
+	
+	/**
+	 * 发送邮件Util类
+	 * @return
+	 */
+	 boolean sendEmailService(String receiverEmail,String emailCode,String topic) throws Exception ;
+
+}

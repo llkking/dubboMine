@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="hosjoy-dubbo-provider" owner="admin-l" organization="dubbo"/>  
+	
+	<!-- 注册dubbo monitor -->
+	<!-- <dubbo:monitor protocol="registry"/> -->
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->  
+	<dubbo:registry protocol="zookeeper" address="${spring.dubbo.registry.address}" />
+
+    <!-- 协议端口暴露服务 -->
+	 <dubbo:protocol name="${spring.dubbo.protocol.name}" port="${spring.dubbo.protocol.port}"/> 
+	 
+	 <!-- 开启 令牌验证，为空表示不开启，如果为true，表示随机生成动态令牌 -->
+    <dubbo:provider token="true" timeout="20000" retries="0"/>
+    
+    <!-- 开启dubbo注解支持 -->
+	<!-- 扫描注解包路径，多个包用逗号分隔 -->
+	<dubbo:annotation package="${api.scan.package}" />
+    
+    <!-- 单独针对服务的注册，针对具体服务进行注册的方式-->
+    <!-- <dubbo:service timeout="20000" interface="com.hosjoy.dubbo.api.service.DemoService" ref="demoService"/>
+    <dubbo:service timeout="20000" interface="com.hosjoy.dubbo.api.service.IPayDetailService" ref="payDetailService"/> -->
+    
+   <!--  <dubbo:consumer  filter="transactionFilter" /> -->
+    
+    
+   
+   	  	
+</beans>

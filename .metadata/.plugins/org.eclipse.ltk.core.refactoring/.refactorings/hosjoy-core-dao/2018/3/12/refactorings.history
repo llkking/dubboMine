@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;hosjoy-core-dao&apos;&#x0D;&#x0A;- Original project: &apos;hosjoy-core-dao&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     hosjoy-core-dao/src/main/resources&#x0D;&#x0A;     hosjoy-core-dao/src/test/java&#x0D;&#x0A;     hosjoy-core-dao/src/test/resources" description="Delete elements" element1="/src\/test\/resources" element2="/src\/main\/resources" element3="/src\/test\/java" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1521790276902" subPackages="false" version="1.0"/>
+</session>

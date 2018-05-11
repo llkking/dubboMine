@@ -1,0 +1,131 @@
+package com.hosjoy.dubbo.provider.serviceImpl;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.hosjoy.dubbo.api.model.common.BaseModel;
+import com.hosjoy.dubbo.api.service.DemoService;
+import com.hosjoy.dubbo.provider.util.interFace.IUtilsService;
+
+
+@Service
+public class DemoServiceImpl implements DemoService {
+
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+	
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplateObj;
+	
+	@Autowired
+    private Executor executor;
+	
+	@Autowired
+    private ExecutorService executorService;
+	
+	@Autowired
+	private ScheduledExecutorService scheduledExecutorService;
+	
+	@Autowired
+	IUtilsService utilsService;
+	
+	
+	@Override
+	public BaseModel getModelBean() {
+        try {
+        	//ValueOperations<String, String> valueOps = redisTemplate.opsForValue();
+			// 字典数据从redis获取
+			//String dictStr = valueOps.get("redis_dict");
+			
+			//System.out.println(dictStr);
+			
+			BaseModel bm = new BaseModel();
+			bm.setCode("200");
+			bm.setMsg("success");
+			/*Thread t = new Thread(){
+				public void run(){
+					try {
+						Thread.sleep(100000);
+						for(int i = 0 ; i < 100 ; i ++){
+							System.out.println("123213213213231");
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			};
+			
+			t.start();*/
+			executor.execute(new Runnable() {
+	            public void run() {
+	            	try {
+	            		List<String> sendlist = new ArrayList<>();
+	            		sendlist.add("969651643@qq.com");
+	            		sendlist.add("714951069@qq.com");
+	            		sendlist.add("2233929883@qq.com");
+	            		sendlist.add("1029465107@qq.com");
+	            		String context = "鲲鹏公司周年庆testGroupSend邮件，验证码为：423460，凭验证码请到中国人民银行上海路支行领取支票一张（金额十万）";
+	            		utilsService.sendEmailService(sendlist, context,"鲲鹏公司周年庆，你被馅饼砸中了");
+	        		} catch (Exception e) {
+	        			// TODO Auto-generated catch block
+	        			e.printStackTrace();
+	        		}
+					
+	            }
+	        });
+			
+			executorService.execute(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(int i = 0 ; i < 10 ; i ++){
+						System.out.println("456456456456");
+					}
+					
+				}
+				
+			});
+			
+			Future<String> res = executorService.submit(new Callable<String>() {
+
+				@Override
+				public String call() throws Exception {
+					for(int i = 0 ; i < 10 ; i ++){
+						System.out.println("789789987");
+					}
+					return "success";
+				}
+			});
+			
+			System.out.println(res.get());
+			//ValueOperations<String, Object> valueOpsObj = redisTemplateObj.opsForValue();
+			//BaseModel b1 = (BaseModel) valueOpsObj.get("test123");
+			//System.out.println(b1);
+			return bm;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+}

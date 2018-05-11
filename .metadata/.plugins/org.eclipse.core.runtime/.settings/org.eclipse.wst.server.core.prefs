@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="Apache Tomcat (Runtime) v6.0" id-set\="true" location\="D\:/Program Files/apache-tomcat-6.0.35" name\="Apache Tomcat (Runtime) v6.0" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.60" timestamp\="0"/>\r\n</runtimes>\r\n

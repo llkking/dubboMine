@@ -1,0 +1,71 @@
+package com.hosjoy.dubbo.consumer.call;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.hosjoy.core.model.PayDetail;
+import com.hosjoy.dubbo.api.model.common.BaseModel;
+import com.hosjoy.dubbo.api.model.common.BaseModelInfo;
+import com.hosjoy.dubbo.api.service.DemoService;
+import com.hosjoy.dubbo.api.service.IPayDetailService;
+
+@RestController
+@RequestMapping("/test")
+public class TestController {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Reference 
+	DemoService demoService;
+	
+	@Reference 
+	IPayDetailService payDetailService;
+	
+	
+	@GET
+	@RequestMapping("/getDemo")
+	public BaseModel getRequireInfo(@RequestParam("id") Integer id){
+		logger.info("id is "+id);
+		BaseModel res  = demoService.getModelBean();
+		
+		return res;
+	}
+	
+	@GET
+	@RequestMapping("/getDbDemo")
+	public BaseModelInfo<PayDetail> getPayDetailInfo(@RequestParam("id") Long id){
+		logger.info("id is "+id);
+		BaseModelInfo<PayDetail> res = payDetailService.selectpdById(id);
+		return res;
+	}
+	
+	@GET
+	@RequestMapping("/getDbDemoList")
+	public BaseModelInfo<List<PayDetail>> getPayDetailInfoList(@RequestParam("num") Integer num){
+		logger.info("num is "+num);
+		BaseModelInfo<List<PayDetail>> res  = payDetailService.selectNumList(num);
+		return res;
+	}
+	
+	@POST
+	@RequestMapping("/add")
+	public BaseModel addPayDetailInfoList(){
+		PayDetail pd = new PayDetail();
+		pd.setMaterialCode("123456");
+		pd.setPayMoney(new BigDecimal("12345"));
+		pd.setPayNo("1111111111");
+		pd.setSubOrderCode("222222");
+		BaseModel res  = payDetailService.insertLogPd(pd);
+		return res;
+	}
+}

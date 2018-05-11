@@ -1,0 +1,55 @@
+profile = dev_envrimont
+## Dubbo \u670d\u52a1\u63d0\u4f9b\u8005\u914d\u7f6e
+spring.dubbo.registry.address=zookeeper://172.16.168.34:2181
+#dubbo\u591azookeeper\u914d\u7f6e
+#spring.dubbo.registry.address=zookeeper://172.16.168.34:2181?backup=172.16.168.xx:2181,172.16.168.yy:2181
+spring.dubbo.protocol.name=dubbo
+spring.dubbo.protocol.port=20880
+
+
+mybatis.mapper-locations=classpath*:com/hosjoy/core/mapper/*Mapper.xml
+mybatis.type-aliases-package=com/hosjoy/core/model
+
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://172.16.168.20:3306/dfx?characterEncoding=utf8
+spring.datasource.username=root
+spring.datasource.password=new_pass
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+
+server.port=8082
+dev.debug=1
+spring.datasource.jndi-name=jdbc/hosjoy-dubbo
+
+#dubbo service\u626b\u63cf\u670d\u52a1\u5305\u8def\u5f84
+api.scan.package= com.hosjoy.dubbo.provider.serviceImpl
+
+# log_config
+logging.level.root=INFO
+logging.level.com.hosjoy.core=DEBUG
+#logging.level.org.springframework.web=ERROR
+
+#tx-manager
+tx.manager.url=http://127.0.0.1:8899/tx/manager/
+
+# REDIS (RedisProperties)
+spring.redis.database=0
+#spring.redis.host=127.0.0.1
+spring.redis.host=172.16.168.8
+spring.redis.port=6379
+spring.redis.password=KsniDk932
+spring.redis.pool.max-active=2000
+spring.redis.pool.max-wait=-1
+spring.redis.pool.max-idle=1000
+spring.redis.pool.min-idle=0  
+spring.redis.timeout=0
+
+#ThreadPool
+tp.corePoolSize = 30
+tp.maxPoolSize = 50
+tp.keepAlive = 60
+
+#Email
+SMTPSERVERQQ = smtp.qq.com
+SMTPPORTQQ = 465
+ACCOUTQQ = 2399392911@qq.com
+PWDQQ = jdlosyxfqxgyecif

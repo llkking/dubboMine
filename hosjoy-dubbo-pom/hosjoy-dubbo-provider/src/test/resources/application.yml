@@ -1,0 +1,128 @@
+server:
+  port: 8082
+  
+  
+#dubbo配置
+dubbo :  
+  protocol :   
+    prot : 20880  
+    name  : dubbo  
+  registry :  
+    address : zookeeper://172.16.168.34:2181  
+    
+#当前激活的环境
+spring:
+  profiles:
+      active: dev
+  redis:
+      host: 172.16.168.8
+      #host: 127.0.0.1
+      database: 0
+      port: 6379
+      #port: 6379
+      password: KsniDk932
+      timeout: 60000
+      pool:
+       max-wait: -1
+       max-idle: 500
+       min-idle: 0
+
+#日志配置
+logging:
+  level: 
+    #org.apache.zookeeper: off
+    #com.alibaba: off
+    root: info
+    com.hosjoy.core: debug
+
+#mybatis扫描xml路径
+mybatis:
+    type-aliases-package: com/hosjoy/core/model
+    mapper-locations: classpath*:com/hosjoy/core/mapper/*Mapper.xml
+
+
+#pageHelper分页数据配置
+#pagehelper:
+#    helperDialect: mysql
+#    reasonable: false
+#    supportMethodsArguments: true
+#    params: count=countSql
+
+---  
+# 开发环境配置
+spring:
+  profiles: dev
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://172.16.168.20:3306/dfx?characterEncoding=utf8
+    username: root
+    password: new_pass
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: config
+      maxActive: 50
+      initialSize: 10
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      connectionProperties: config.decrypt=false;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMBqy+oGF0DhV2jiHyilb4mowR4mgQL4FSE0+GvlstTqYanSnJXYHmAffYVNO7lsAq4KU0K3Xh9e6qtGdAevFq0CAwEAAQ==
+
+---
+#  测环境配置
+#spring:
+#  profiles: test
+  #数据库配置
+#  datasource:
+#    url: jdbc:mysql://???
+#    username: root
+#    password: 
+#    driver-class-name: com.mysql.jdbc.Driver
+#    # 使用druid数据源
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+#      filters: config
+#      maxActive: 50
+#      initialSize: 10
+#      maxWait: 60000
+ #     minIdle: 1
+ #     timeBetweenEvictionRunsMillis: 60000
+ #     minEvictableIdleTimeMillis: 300000
+ #     validationQuery: select 'x'
+#      testWhileIdle: true
+#      testOnBorrow: false
+#      testOnReturn: false
+ #     connectionProperties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKNvhBH2ISaQdOT8OmkCCj46sH0DePZqXR4NcCDXtkMUwNQtQnHBhFTNLMOYNWEJdAFtApfod7cKCEtxOqb6NcECAwEAAQ==
+
+# 生产环境配置
+#spring:
+#  profiles: prd
+  #数据库配置
+#  datasource:
+#    url: jdbc:mysql://
+ #   username: 
+ #   password: 
+ #   driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+ #   type: com.alibaba.druid.pool.DruidDataSource
+ #   druid:
+ #     filters: config
+ #     maxActive: 50
+ #     initialSize: 10
+ #     maxWait: 60000
+ #     minIdle: 1
+ #     timeBetweenEvictionRunsMillis: 60000
+ #     minEvictableIdleTimeMillis: 300000
+ #     validationQuery: select 'x'
+ #     testWhileIdle: true
+ #     testOnBorrow: false
+ #     testOnReturn: false
+ #     connectionProperties: config.decrypt=false;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADlSwAwSAJBAKj6GDulc4yk+bqjrTREK97xzM50WxNEIFfyTyJJB27tGXZrcCTMHyE91yqQXXG7sZnNeIbaHJayXiszPBmSaB0CAwEAAQ==
+
+

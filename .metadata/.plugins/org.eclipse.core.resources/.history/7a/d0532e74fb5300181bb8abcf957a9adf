@@ -1,0 +1,11 @@
+package com.hosjoy.dubbo.api.service;
+
+public interface IEmailSenderService {
+	
+	/**
+	 * 发送邮件
+	 * @return
+	 */
+	 boolean send(String receiverEmail,String emailCode,String topic) throws Exception ;
+	
+}

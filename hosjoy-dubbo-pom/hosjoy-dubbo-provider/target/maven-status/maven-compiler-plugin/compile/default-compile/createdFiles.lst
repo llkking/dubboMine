@@ -1,0 +1,7 @@
+com\hosjoy\dubbo\provider\config\MySqlSessionFactoryBean.class
+com\hosjoy\dubbo\provider\config\MyBatisMapperScannerConfig.class
+com\hosjoy\dubbo\provider\AppAplication.class
+com\hosjoy\dubbo\provider\serviceImpl\PayDetailServiceImpl.class
+com\hosjoy\dubbo\provider\listener\WebThreadListener.class
+com\hosjoy\dubbo\provider\serviceImpl\DemoServiceImpl.class
+com\hosjoy\dubbo\provider\util\PageUtil.class

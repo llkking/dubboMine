@@ -1,0 +1,5 @@
+package com.hosjoy.dubbo.provider.util.interFace;
+
+public interface IUtilsService {
+
+}

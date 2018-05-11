@@ -1,0 +1,130 @@
+package com.hosjoy.dubbo.provider.serviceImpl;
+
+
+import java.math.BigDecimal;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.hosjoy.dubbo.api.model.common.BaseModel;
+import com.hosjoy.dubbo.api.service.DemoService;
+
+
+@Service
+public class DemoServiceImpl implements DemoService {
+
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+	
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplateObj;
+	
+	@Autowired
+    private Executor executor;
+	
+	@Autowired
+    private ExecutorService executorService;
+	
+	@Override
+	public BaseModel getModelBean() {
+        try {
+        	//ValueOperations<String, String> valueOps = redisTemplate.opsForValue();
+			// 字典数据从redis获取
+			//String dictStr = valueOps.get("redis_dict");
+			
+			//System.out.println(dictStr);
+			
+			BaseModel bm = new BaseModel();
+			bm.setCode("200");
+			bm.setMsg("success");
+			/*Thread t = new Thread(){
+				public void run(){
+					try {
+						Thread.sleep(100000);
+						for(int i = 0 ; i < 100 ; i ++){
+							System.out.println("123213213213231");
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			};
+			
+			t.start();*/
+			executor.execute(new Runnable() {
+	            public void run() {
+	            	try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(int i = 0 ; i < 10 ; i ++){
+						System.out.println("123213213213231");
+					}
+					
+	            }
+	        });
+			
+			executorService.execute(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for(int i = 0 ; i < 10 ; i ++){
+						System.out.println("456456456456");
+					}
+					
+				}
+				
+			});
+			
+			Future<String> res = executorService.submit(new Callable<String>() {
+
+				@Override
+				public String call() throws Exception {
+					for(int i = 0 ; i < 10 ; i ++){
+						System.out.println("789789987");
+					}
+					return "success";
+				}
+			});
+			
+			System.out.println(res.get());
+			//ValueOperations<String, Object> valueOpsObj = redisTemplateObj.opsForValue();
+			//BaseModel b1 = (BaseModel) valueOpsObj.get("test123");
+			//System.out.println(b1);
+			return bm;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public static void main(String[] args) {
+//        double b = 12.34;
+//        BigDecimal a = new BigDecimal(b);
+//        System.out.println(a.multiply(new BigDecimal(100.01)).setScale(2,BigDecimal.ROUND_HALF_UP));
+        System.out.println(new BigDecimal(100.555).setScale(1, BigDecimal.ROUND_HALF_DOWN));
+        System.out.println(new BigDecimal(100.455).setScale(1, BigDecimal.ROUND_HALF_UP));
+        
+//        BigDecimal C = new BigDecimal(1.455);
+//        System.out.println("down="+C.setScale(1,BigDecimal.ROUND_HALF_DOWN)+"/tup="+C.setScale(1,BigDecimal.ROUND_HALF_UP));
+        
+    }
+	
+}

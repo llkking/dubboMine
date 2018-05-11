@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;hosjoy-dubbo-api&apos;&#x0D;&#x0A;- Original project: &apos;hosjoy-dubbo-api&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     hosjoy-dubbo-api/src/main/resources&#x0D;&#x0A;     hosjoy-dubbo-api/src/test/java&#x0D;&#x0A;     hosjoy-dubbo-api/src/test/resources" description="Delete elements" element1="/src\/main\/resources" element2="/src\/test\/java" element3="/src\/test\/resources" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1521594889658" subPackages="false" version="1.0"/>
+</session>
